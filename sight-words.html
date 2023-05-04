@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <stephen@williams-cloud.com> wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.
+ * ----------------------------------------------------------------------------
+ */
+
+ -->
+
+<title>Sight Words</title>
+<style type="text/css">
+body {
+  margin: 0;
+  background-color: #595959;
+}
+
+.button {
+  background-color: #70000c;
+  text-align: center;
+  color: white;
+  text-align: center;
+  height:50vh;
+  width:50vh;
+  font-size: 10vh; 
+  border-style: solid;
+  display:block;
+  margin: 0 auto;
+}
+
+button.active.focus, button.active:focus,
+button.focus, button:active.focus, 
+button:active:focus, button:focus {
+  outline: none;
+}
+
+li:nth-child(odd) {
+    background: #808080;
+}
+
+/*Stole this for the apply notification.
+/* The applynotifi - position it at the bottom and in the middle of the screen */
+#applynotifi {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the applynotifi */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the applynotifi when clicking on a button (class added with JavaScript) */
+#applynotifi.show {
+  visibility: visible; /* Show the applynotifi */
+  /* Add animation: Take 0.5 seconds to fade in and out the applynotifi.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the applynotifi in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+/*End of the apply notification.
+
+</style>
+
+<body>
+<h1><center>Sight word flash cards</center></h1>
+<button type="button" id=sightbutton class="button" onclick="newsight()">
+Click for a sight word!</button>
+<center>
+<font size="5">
+Updated on 4/14/2023
+<br><br>
+<details>
+  <summary>Show all the site words added</summary>
+  <ol>
+  <div id=hide>This will be filled with the sight words on page load.</div>
+  </ol>
+</details>
+<br><br>
+<form name="myForm" action="" method="GET">
+  Dont like my words? Enter new words (comma separated): <br>
+  <input type="text" name="inputbox" value="first,second,third" pattern="[A-Za-z,]+">
+  <input type="button" name="button" value="Apply" onClick="changewords(this.form)">
+</form>
+</font>
+<div id="applynotifi">New words replaced.</div>
+
+</center>
+</body>
+<script>
+var sight = ["now", "such","play","look","he","do","love","then",
+         "we","will","and","a","the","me","hat",
+                 "is","you","to","dad","have","yes","in","she",
+                 "was","them","can","said","off","this","it","an","from",
+                 "my","see","much","sat","that","go","sad","no","like",
+                 "i","back","give","her","on"];
+
+let sortedsight = sight.sort();
+var sortedlst = sortedsight.map(i => '<li>' + i);
+var sortedlst = sortedlst.join("</li>");
+document.getElementById("hide").innerHTML = sortedlst;
+
+function newsight() {
+    var onesight = sight[Math.floor(Math.random()*sight.length)];
+    document.getElementById("sightbutton").innerHTML = onesight;
+    }
+
+function changewords (form) {
+    var inputValue = form.inputbox.value;
+        inputValue = inputValue.replace(/\s/g, '');
+        inputValue = inputValue.replace("<", '');
+        inputValue = inputValue.replace(">", '');
+        inputValue = inputValue.split(',');
+    sight = inputValue;
+        let sortedsight = sight.sort();
+        var sortedlst = sortedsight.map(i => '<li>' + i);
+        var sortedlst = sortedlst.join("</li>");
+        document.getElementById("hide").innerHTML = sortedlst;
+        myFunction();
+}
+
+
+function myFunction() {
+  // Get the applynotifi DIV
+  var x = document.getElementById("applynotifi");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+</html>
