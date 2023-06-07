@@ -20,6 +20,12 @@ body {
   background-color: #595959;
 }
 
+.olcenter
+{
+ text-align: left;
+ margin-left: 45%;
+}
+
 .button {
   background-color: #70000c;
   text-align: center;
@@ -39,9 +45,6 @@ button:active:focus, button:focus {
   outline: none;
 }
 
-li:nth-child(odd) {
-    background: #808080;
-}
 
 /*Stole this for the apply notification.
 /* The applynotifi - position it at the bottom and in the middle of the screen */
@@ -99,11 +102,11 @@ li:nth-child(odd) {
 Click for a sight word!</button>
 <center>
 <font size="5">
-Updated on 4/14/2023
+Updated on 6/7/2023.
 <br><br>
 <details>
   <summary>Show all the site words added</summary>
-  <ol>
+  <ol class="olcenter">
   <div id=hide>This will be filled with the sight words on page load.</div>
   </ol>
 </details>
@@ -119,12 +122,49 @@ Updated on 4/14/2023
 </center>
 </body>
 <script>
-var sight = ["now", "such","play","look","he","do","love","then",
-         "we","will","and","a","the","me","hat",
-                 "is","you","to","dad","have","yes","in","she",
-                 "was","them","can","said","off","this","it","an","from",
-                 "my","see","much","sat","that","go","sad","no","like",
-                 "i","back","give","her","on"];
+var sight = ["the","to","and","he","a","I",
+"you","it","of","in","was","said",
+"his","that","she","for","on","they",
+"but","had","at","him","with","up",
+"all","look","is","her","there","some",
+"out","as","be","have","go","we","am",
+"then","little","down","do","came",
+"could","when","did","what","so","see",
+"not","were","get","them","like","one",
+"this","my","would","me","will","yes",
+"big","went","are","come","if","now",
+"long","no","came","ask","very","an",
+"over","your","its","ride","into",
+"just","blue","red","from","good",
+"any","about","around","want","don\'t",
+"how","know","right","put","too",
+"got","take","where","every","pretty",
+"jump","green","four","away","old",
+"by","their","here","saw","call",
+"after","well","think","ran","let",
+"help","make","going","sleep","brown",
+"yellow","five","six","walk","two",
+"or","before","eat","again","play",
+"who","been","may","stop","off",
+"never","seven","eight","cold",
+"today","fly","myself","round",
+"tell","much","keep","give",
+"work","first","try","new","must",
+"start","black","white","ten",
+"does","bring","goes","write",
+"always","drink","once","soon",
+"made","run","gave","open","has",
+"find","only","us","three","our",
+"better","hold","buy","funny",
+"warm","ate","full","those","done",
+"use","fast","say","light","pick",
+"hurt","pull","cut","kind","both",
+"sit","which","fall","carry","small",
+"under","read","why","own","found",
+"wash","show","hot","because","far",
+"live","draw","clean","grow","best",
+"upon","these","sing","together",
+"please","thank","wish","many","shall","laugh"]
 
 let sortedsight = sight.sort();
 var sortedlst = sortedsight.map(i => '<li>' + i);
