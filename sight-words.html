@@ -20,6 +20,12 @@ body {
   background-color: #595959;
 }
 
+.olcenter
+{
+ text-align: left;
+ margin-left: 45%;
+}
+
 .button {
   background-color: #70000c;
   text-align: center;
@@ -31,6 +37,7 @@ body {
   border-style: solid;
   display:block;
   margin: 0 auto;
+  font-family: "Courier New"
 }
 
 button.active.focus, button.active:focus,
@@ -39,92 +46,103 @@ button:active:focus, button:focus {
   outline: none;
 }
 
-li:nth-child(odd) {
-    background: #808080;
-}
-
-/*Stole this for the apply notification.
-/* The applynotifi - position it at the bottom and in the middle of the screen */
-#applynotifi {
-  visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 250px; /* Set a default minimum width */
-  margin-left: -125px; /* Divide value of min-width by 2 */
-  background-color: #333; /* Black background color */
-  color: #fff; /* White text color */
-  text-align: center; /* Centered text */
-  border-radius: 2px; /* Rounded borders */
-  padding: 16px; /* Padding */
-  position: fixed; /* Sit on top of the screen */
-  z-index: 1; /* Add a z-index if needed */
-  left: 50%; /* Center the applynotifi */
-  bottom: 30px; /* 30px from the bottom */
-}
-
-/* Show the applynotifi when clicking on a button (class added with JavaScript) */
-#applynotifi.show {
-  visibility: visible; /* Show the applynotifi */
-  /* Add animation: Take 0.5 seconds to fade in and out the applynotifi.
-  However, delay the fade out process for 2.5 seconds */
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animations to fade the applynotifi in and out */
-@-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-/*End of the apply notification.
-
 </style>
 
 <body>
 <h1><center>Sight word flash cards</center></h1>
 <button type="button" id=sightbutton class="button" onclick="newsight()">
-Click for a sight word!</button>
+Click for sight words!</button>
 <center>
 <font size="5">
-Updated on 4/14/2023
+Updated on 11/08/2024.
 <br><br>
 <details>
   <summary>Show all the site words added</summary>
-  <ol>
+  <ol class="olcenter">
   <div id=hide>This will be filled with the sight words on page load.</div>
   </ol>
 </details>
-<br><br>
+<br>
+<div id="needhelp" style="display: block; font-size: 20px">
+<details>
+  <summary>Need Help?</summary>
+<br>
 <form name="myForm" action="" method="GET">
-  Dont like my words? Enter new words (comma separated): <br>
+  Dont like my words?<br>Enter new words (comma separated) and click apply. <br>
   <input type="text" name="inputbox" value="first,second,third" pattern="[A-Za-z,]+">
   <input type="button" name="button" value="Apply" onClick="changewords(this.form)">
+  <br><br>
+  You can also edit the end of the URL to look like the below URL.<br>
+  <a id="urlocation" href="index.html?sightwords=sight1,sight2,sight3"style="color: #cccccc"></a>
+ <br><br>
 </form>
+</details>
+</div>
 </font>
-<div id="applynotifi">New words replaced.</div>
-
 </center>
 </body>
 <script>
-var sight = ["now", "such","play","look","he","do","love","then",
-         "we","will","and","a","the","me","hat",
-                 "is","you","to","dad","have","yes","in","she",
-                 "was","them","can","said","off","this","it","an","from",
-                 "my","see","much","sat","that","go","sad","no","like",
-                 "i","back","give","her","on"];
+
+const params = new URLSearchParams(window.location.search);
+
+if ([...params].length > 0) {
+
+	var urldata = params.get('sightwords'); 
+	urldata = urldata.replace(/\s/g, '');
+	urldata = urldata.replace("<", '');
+	urldata = urldata.replace(">", '');
+	var sight = urldata.split(",");
+	console.log(sight);
+	//console.log(sight)
+	document.getElementById("needhelp").style.display = 'none';
+							}
+	else {
+		var sight = ["the","to","and","he","a","I",
+					 "you","it","of","in","was","said",
+					 "his","that","she","for","on","they",
+					 "but","had","at","him","with","up",
+					 "all","look","is","her","there","some",
+					 "out","as","be","have","go","we","am",
+					 "then","little","down","do","came",
+					 "could","when","did","what","so","see",
+					 "not","were","get","them","like","one",
+					 "this","my","would","me","will","yes",
+					 "big","went","are","come","if","now",
+					 "long","no","came","ask","very","an",
+					 "over","your","its","ride","into",
+					 "just","blue","red","from","good",
+					 "any","about","around","want","don\'t",
+					 "how","know","right","put","too",
+					 "got","take","where","every","pretty",
+					 "jump","green","four","away","old",
+					 "by","their","here","saw","call",
+					 "after","well","think","ran","let",
+					 "help","make","going","sleep","brown",
+					 "yellow","five","six","walk","two",
+					 "or","before","eat","again","play",
+					 "who","been","may","stop","off",
+					 "never","seven","eight","cold",
+					 "today","fly","myself","round",
+					 "tell","much","keep","give",
+					 "work","first","try","new","must",
+					 "start","black","white","ten",
+					 "does","bring","goes","write",
+					 "always","drink","once","soon",
+					 "made","run","gave","open","has",
+					 "find","only","us","three","our",
+					 "better","hold","buy","funny",
+					 "warm","ate","full","those","done",
+					 "use","fast","say","light","pick",
+					 "hurt","pull","cut","kind","both",
+					 "sit","which","fall","carry","small",
+					 "under","read","why","own","found",
+					 "wash","show","hot","because","far",
+					 "live","draw","clean","grow","best",
+					 "upon","these","sing","together",
+					 "please","thank","wish","many","shall","laugh"];
+		 }
+
+
 
 let sortedsight = sight.sort();
 var sortedlst = sortedsight.map(i => '<li>' + i);
@@ -135,31 +153,23 @@ function newsight() {
     var onesight = sight[Math.floor(Math.random()*sight.length)];
     document.getElementById("sightbutton").innerHTML = onesight;
     }
-
+	
 function changewords (form) {
     var inputValue = form.inputbox.value;
-        inputValue = inputValue.replace(/\s/g, '');
-        inputValue = inputValue.replace("<", '');
-        inputValue = inputValue.replace(">", '');
-        inputValue = inputValue.split(',');
-    sight = inputValue;
-        let sortedsight = sight.sort();
-        var sortedlst = sortedsight.map(i => '<li>' + i);
-        var sortedlst = sortedlst.join("</li>");
-        document.getElementById("hide").innerHTML = sortedlst;
-        myFunction();
+	inputValue = inputValue.replace(/\s/g, '');
+	inputValue = inputValue.replace("<", '');
+	inputValue = inputValue.replace(">", '');
+	inputValue = inputValue.split(',');
+    //sight = inputValue;
+	window.location.href = ("index.html?sightwords=" + inputValue)
+	url.hostname
 }
+//URL finder for the url page
+document.getElementById("urlocation").innerHTML = window.location.href + "?sightwords=first,second,third";
 
-
-function myFunction() {
-  // Get the applynotifi DIV
-  var x = document.getElementById("applynotifi");
-
-  // Add the "show" class to DIV
-  x.className = "show";
-
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
 </script>
+
+</center>
+</body>
+
 </html>
