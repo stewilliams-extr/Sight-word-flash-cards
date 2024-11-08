@@ -1,6 +1,6 @@
 # Sight-word-flash-cards
 This is a simple JavaScript html page that just shows random sight word each time you click on the box.  Add more to the list to study more words.
-
+  [See this live](https://networkingtoolkit.org/sight/)
 
 ## Project Files:
 * [sight-words.html](./sight-words.html)
